@@ -30,11 +30,17 @@
                             <outlet property="delegate" destination="uaK-yL-pPj" id="QBd-eN-ozZ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Expenses Tracker" id="6p5-0G-sMJ"/>
+                    <navigationItem key="navigationItem" title="Expenses Tracker" id="6p5-0G-sMJ">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="ZvS-n0-qyu">
+                            <connections>
+                                <action selector="addCategoryPressed:" destination="uaK-yL-pPj" id="ttn-Ds-SxS"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ezr-pK-04n" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="840.45801526717548" y="-145.07042253521126"/>
+            <point key="canvasLocation" x="639" y="-145"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="y2o-st-wUR">
