@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0D18F69F2BE00303005C2CAB /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D18F69E2BE00303005C2CAB /* Category.swift */; };
 		0DDAABF02BDAC8F60003A7C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DDAABEF2BDAC8F60003A7C1 /* AppDelegate.swift */; };
 		0DDAABF22BDAC8F60003A7C1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DDAABF12BDAC8F60003A7C1 /* SceneDelegate.swift */; };
 		0DDAABF42BDAC8F60003A7C1 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DDAABF32BDAC8F60003A7C1 /* CategoryViewController.swift */; };
@@ -18,7 +17,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0D18F69E2BE00303005C2CAB /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		0DDAABEC2BDAC8F60003A7C1 /* ExpensesTracker-New.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ExpensesTracker-New.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DDAABEF2BDAC8F60003A7C1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0DDAABF12BDAC8F60003A7C1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -45,7 +43,6 @@
 			isa = PBXGroup;
 			children = (
 				0DDAABF82BDAC8F60003A7C1 /* ExpensesTracker_New.xcdatamodeld */,
-				0D18F69E2BE00303005C2CAB /* Category.swift */,
 			);
 			path = "Data Model";
 			sourceTree = "<group>";
@@ -177,7 +174,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0DDAABFA2BDAC8F60003A7C1 /* ExpensesTracker_New.xcdatamodeld in Sources */,
-				0D18F69F2BE00303005C2CAB /* Category.swift in Sources */,
 				0DDAABF42BDAC8F60003A7C1 /* CategoryViewController.swift in Sources */,
 				0DDAABF02BDAC8F60003A7C1 /* AppDelegate.swift in Sources */,
 				0DDAABF22BDAC8F60003A7C1 /* SceneDelegate.swift in Sources */,
