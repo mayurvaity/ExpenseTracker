@@ -50,30 +50,41 @@ class CategoryViewController: UITableViewController {
         cell.textLabel?.text = category.title
         
         //setting value for tick mark
-        cell.accessoryType = category.done ? .checkmark : .none
-        //other way of doing the same
-        //        if category.done == true {
-        //            cell.accessoryType = .checkmark
-        //        } else {
-        //            cell.accessoryType = .none
-        //        }
+//        cell.accessoryType = category.done ? .checkmark : .none
+        //setting accessorytype to > 
+        cell.accessoryType = .disclosureIndicator
         
         return cell
     }
     
     //MARK: - Tableview Delegate Methods
-    //to mark done on click
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Selected cell: ", categoryArray[indexPath.row])
-        
-        categoryArray[indexPath.row].done = !categoryArray[indexPath.row].done
-        
-        //saving updated data in db and reload tableView
-        saveCategories()
-        
-        //to deselect a cell after clicking on (makes it normal looking instead of keeping it look selected(grey))
-        tableView.deselectRow(at: indexPath, animated: true)
+        performSegue(withIdentifier: "goToExpenses", sender: self)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! ExpensesViewController
+        
+        //getting selected row details 
+        if let indexPath = tableView.indexPathForSelectedRow {
+            //to get category name to be used in expensesVC
+            destinationVC.selectedCategory = categoryArray[indexPath.row]
+        }
+    }
+    
+    //to mark done on click
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        print("Selected cell: ", categoryArray[indexPath.row])
+//        
+//        categoryArray[indexPath.row].done = !categoryArray[indexPath.row].done
+//        
+//        //saving updated data in db and reload tableView
+//        saveCategories()
+//        
+//        //to deselect a cell after clicking on (makes it normal looking instead of keeping it look selected(grey))
+//        tableView.deselectRow(at: indexPath, animated: true)
+//    }
     
     //to update on click
     //    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -172,6 +183,8 @@ class CategoryViewController: UITableViewController {
         //to refresh data in the tableView
         tableView.reloadData()
     }
+    
+    
     
 }
 
