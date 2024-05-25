@@ -2,12 +2,12 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qQn-gE-0vb">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Expenses Tracker-->
+        <!--Expense Tracker-->
         <scene sceneID="9zf-r2-nxx">
             <objects>
                 <tableViewController id="uaK-yL-pPj" customClass="CategoryViewController" customModule="ExpensesTracker_New" customModuleProvider="target" sceneMemberID="viewController">
@@ -38,7 +38,7 @@
                             <outlet property="delegate" destination="uaK-yL-pPj" id="QBd-eN-ozZ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Expenses Tracker" id="6p5-0G-sMJ">
+                    <navigationItem key="navigationItem" title="Expense Tracker" id="6p5-0G-sMJ">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="ZvS-n0-qyu">
                             <connections>
                                 <action selector="addCategoryPressed:" destination="uaK-yL-pPj" id="ttn-Ds-SxS"/>

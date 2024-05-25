@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import RealmSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,10 +15,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        print("didFinishLaunchingWithOptions")
-        //to get the path of userDefaults plist file
-//        print(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last! as String)
+        
+        //to get location of realm file
+        print(Realm.Configuration.defaultConfiguration.fileURL)
+        
+        //initializing new realm
+//        do {
+//            //initalizing realm
+//            let realm = try Realm()
+//            //writing to realm
+//            try realm.write {
+//                //performing add operation on realm data
+//                realm.add(data)
+//            }
+//        } catch {
+//            print("Error initializing new relam, \(error)")
+//        }
         
         return true
     }
