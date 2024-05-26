@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D001AC82C024C5F009D955D /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D001AC72C024C5F009D955D /* CustomTableViewCell.xib */; };
+		0D001AC92C024C5F009D955D /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D001AC62C024C5F009D955D /* CustomTableViewCell.swift */; };
 		0D2B29B52BE2C82F00D1E008 /* ExpensesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2B29B42BE2C82F00D1E008 /* ExpensesViewController.swift */; };
 		0DAF56B72C0199C50003BC04 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF56B62C0199C50003BC04 /* Expense.swift */; };
 		0DAF56B92C019B630003BC04 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF56B82C019B630003BC04 /* Category.swift */; };
@@ -20,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0D001AC62C024C5F009D955D /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		0D001AC72C024C5F009D955D /* CustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
 		0D2B29B42BE2C82F00D1E008 /* ExpensesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesViewController.swift; sourceTree = "<group>"; };
 		0DAF56B62C0199C50003BC04 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
 		0DAF56B82C019B630003BC04 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
@@ -62,6 +66,7 @@
 			children = (
 				0DDAABF32BDAC8F60003A7C1 /* CategoryViewController.swift */,
 				0D2B29B42BE2C82F00D1E008 /* ExpensesViewController.swift */,
+				0D001AC62C024C5F009D955D /* CustomTableViewCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -69,6 +74,7 @@
 		0D18F69C2BE00238005C2CAB /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0D001AC72C024C5F009D955D /* CustomTableViewCell.xib */,
 				0DDAABF52BDAC8F60003A7C1 /* Main.storyboard */,
 			);
 			path = Views;
@@ -194,6 +200,7 @@
 			files = (
 				0DDAABFC2BDAC8F70003A7C1 /* Assets.xcassets in Resources */,
 				0DDAABFF2BDAC8F70003A7C1 /* Base in Resources */,
+				0D001AC82C024C5F009D955D /* CustomTableViewCell.xib in Resources */,
 				0DDAABF72BDAC8F60003A7C1 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -250,6 +257,7 @@
 				0DDAABF42BDAC8F60003A7C1 /* CategoryViewController.swift in Sources */,
 				0DDAABF02BDAC8F60003A7C1 /* AppDelegate.swift in Sources */,
 				0D2B29B52BE2C82F00D1E008 /* ExpensesViewController.swift in Sources */,
+				0D001AC92C024C5F009D955D /* CustomTableViewCell.swift in Sources */,
 				0DDAABF22BDAC8F60003A7C1 /* SceneDelegate.swift in Sources */,
 				0DAF56B72C0199C50003BC04 /* Expense.swift in Sources */,
 				0DAF56B92C019B630003BC04 /* Category.swift in Sources */,

@@ -24,7 +24,11 @@ class ExpensesViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
+        //create a nib for custom cell
+        let nib = UINib.init(nibName: "CustomTableViewCell", bundle: nil)
+        //register that nib with tableview
+        tableView.register(nib, forCellReuseIdentifier: "expenseCell")
     }
     
     //MARK: - Tableview Datasource Methods
@@ -33,13 +37,41 @@ class ExpensesViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //creating a cell to pass at tableview
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ExpensesCell", for: indexPath)
+        //creating a cell to pass at tableview, identifier should match with the UItableviewcell name
+        let cell = tableView.dequeueReusableCell(withIdentifier: "expenseCell", for: indexPath) as? CustomTableViewCell
         
         //setting this value to text label of the cell
-        cell.textLabel?.text = expenses?[indexPath.row].title ?? "No expense in this category yet."
+        //checking if value exists for this row
+        if let expenseData = expenses?[indexPath.row] {
+//            cell?.commonInit(title: expenseData.title, amount: expenseData.amount, categoryName: self.selectedCategory?.title!) 
+            cell?.expenseLabel.text = expenseData.title
+            cell?.amountLabel.text = String(expenseData.amount)
+            cell?.paymentMethodLabel.text = "card"
+            cell?.dateLabel.text = "25-May-2024"
+            
+        } else {
+            cell?.expenseLabel.text = "No expenses yet"
+            cell?.amountLabel.text = "0.0"
+            cell?.paymentMethodLabel.text = "No payment method"
+            cell?.dateLabel.text = "25-May-2024"
+        }
         
-        return cell
+        return cell!
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath.row)
+        if let expenseData = expenses?[indexPath.row] {
+            print(expenseData.title)
+            print(expenseData.amount)
+            print(self.selectedCategory?.title)
+            
+        }
+    }
+    
+    //have to set height for custom cell here 
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60.0
     }
     
     //MARK: - Data Manipulation Methods

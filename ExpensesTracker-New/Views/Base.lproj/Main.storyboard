@@ -69,19 +69,9 @@
                                 <outlet property="delegate" destination="m1w-gj-Bt2" id="678-po-hhM"/>
                             </connections>
                         </searchBar>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ExpensesCell" id="P8O-7k-0lc">
-                                <rect key="frame" x="0.0" y="94" width="393" height="43.666667938232422"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="P8O-7k-0lc" id="I9E-Tj-Vy9">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="m1w-gj-Bt2" id="vEB-Qk-LxL"/>
-                            <outlet property="delegate" destination="m1w-gj-Bt2" id="hpW-6C-yh0"/>
+                            <outlet property="delegate" destination="m1w-gj-Bt2" id="d9M-we-pCA"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Expenses" id="cd7-gs-NSC">
