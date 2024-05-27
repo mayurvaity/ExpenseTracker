@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -39,11 +40,18 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Expense Tracker" id="6p5-0G-sMJ">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="ZvS-n0-qyu">
-                            <connections>
-                                <action selector="addCategoryPressed:" destination="uaK-yL-pPj" id="ttn-Ds-SxS"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="ZvS-n0-qyu">
+                                <connections>
+                                    <action selector="addCategoryPressed:" destination="uaK-yL-pPj" id="ttn-Ds-SxS"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="add expense" id="Rrc-JD-78W">
+                                <connections>
+                                    <segue destination="0bS-0D-wOr" kind="presentation" identifier="goToNewExpense" id="hD0-mm-vyS"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <segue destination="m1w-gj-Bt2" kind="show" identifier="goToExpenses" id="vDD-VC-Edd"/>
@@ -85,6 +93,115 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nnp-oU-zyY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1419" y="-145"/>
+        </scene>
+        <!--New Expense View Controller-->
+        <scene sceneID="kdO-5e-onP">
+            <objects>
+                <viewController id="0bS-0D-wOr" customClass="NewExpenseViewController" customModule="ExpensesTracker_New" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XWR-pp-12i">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BKw-hb-rem">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add New Expense" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fdM-VE-O6d">
+                                        <rect key="frame" x="108" y="100" width="177" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="oIN-2l-gnq"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GE2-Gm-Oun">
+                                        <rect key="frame" x="46" y="187" width="142" height="23"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZNg-0d-XsS">
+                                        <rect key="frame" x="196" y="181" width="164" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sGZ-EO-0sg">
+                                        <rect key="frame" x="46" y="237" width="142" height="23"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t2E-Li-kOH">
+                                        <rect key="frame" x="196" y="231" width="164" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eHx-iy-AfN">
+                                        <rect key="frame" x="46" y="293" width="142" height="23"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N7w-gO-uRd">
+                                        <rect key="frame" x="196" y="287" width="164" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IWw-vI-8KQ">
+                                        <rect key="frame" x="46" y="354" width="142" height="23"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="116-cZ-9Vd">
+                                        <rect key="frame" x="196" y="348" width="164" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t2B-gq-xIp">
+                                        <rect key="frame" x="88" y="444" width="216" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Add"/>
+                                        <connections>
+                                            <action selector="addNewExpenseTapped:" destination="0bS-0D-wOr" eventType="touchUpInside" id="CA8-m1-4nG"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="fdM-VE-O6d" firstAttribute="top" secondItem="BKw-hb-rem" secondAttribute="top" constant="100" id="Jyt-Ra-32l"/>
+                                    <constraint firstItem="fdM-VE-O6d" firstAttribute="centerX" secondItem="BKw-hb-rem" secondAttribute="centerX" id="sEC-LP-Wde"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="4ii-kA-D7R"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="4ii-kA-D7R" firstAttribute="trailing" secondItem="BKw-hb-rem" secondAttribute="trailing" id="2k6-Ef-Jxr"/>
+                            <constraint firstItem="BKw-hb-rem" firstAttribute="leading" secondItem="4ii-kA-D7R" secondAttribute="leading" id="d3l-Nl-QrM"/>
+                            <constraint firstItem="4ii-kA-D7R" firstAttribute="bottom" secondItem="BKw-hb-rem" secondAttribute="bottom" id="oHA-Iq-KcS"/>
+                            <constraint firstItem="BKw-hb-rem" firstAttribute="top" secondItem="4ii-kA-D7R" secondAttribute="top" id="orS-Ix-grC"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="expenseAccount" destination="N7w-gO-uRd" id="h2Y-53-N6Q"/>
+                        <outlet property="expenseAmount" destination="t2E-Li-kOH" id="eWI-3o-r9L"/>
+                        <outlet property="expenseDate" destination="116-cZ-9Vd" id="vLi-rV-ZMA"/>
+                        <outlet property="expenseDescription" destination="ZNg-0d-XsS" id="azJ-ki-Rsp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="698-EW-mVZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1344" y="554"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="y2o-st-wUR">

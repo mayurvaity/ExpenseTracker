@@ -10,6 +10,9 @@
 		0D001AC82C024C5F009D955D /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D001AC72C024C5F009D955D /* CustomTableViewCell.xib */; };
 		0D001AC92C024C5F009D955D /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D001AC62C024C5F009D955D /* CustomTableViewCell.swift */; };
 		0D2B29B52BE2C82F00D1E008 /* ExpensesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2B29B42BE2C82F00D1E008 /* ExpensesViewController.swift */; };
+		0D3E8A462C0375D500606433 /* CategoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D3E8A452C0375D500606433 /* CategoryTableViewCell.xib */; };
+		0D3E8A472C0375D500606433 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D3E8A442C0375D500606433 /* CategoryTableViewCell.swift */; };
+		0D3E8A492C0383D400606433 /* NewExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D3E8A482C0383D400606433 /* NewExpenseViewController.swift */; };
 		0DAF56B72C0199C50003BC04 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF56B62C0199C50003BC04 /* Expense.swift */; };
 		0DAF56B92C019B630003BC04 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF56B82C019B630003BC04 /* Category.swift */; };
 		0DDAABF02BDAC8F60003A7C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DDAABEF2BDAC8F60003A7C1 /* AppDelegate.swift */; };
@@ -25,6 +28,9 @@
 		0D001AC62C024C5F009D955D /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		0D001AC72C024C5F009D955D /* CustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
 		0D2B29B42BE2C82F00D1E008 /* ExpensesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesViewController.swift; sourceTree = "<group>"; };
+		0D3E8A442C0375D500606433 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
+		0D3E8A452C0375D500606433 /* CategoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryTableViewCell.xib; sourceTree = "<group>"; };
+		0D3E8A482C0383D400606433 /* NewExpenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewExpenseViewController.swift; sourceTree = "<group>"; };
 		0DAF56B62C0199C50003BC04 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
 		0DAF56B82C019B630003BC04 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		0DDAABEC2BDAC8F60003A7C1 /* ExpensesTracker-New.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ExpensesTracker-New.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -66,7 +72,7 @@
 			children = (
 				0DDAABF32BDAC8F60003A7C1 /* CategoryViewController.swift */,
 				0D2B29B42BE2C82F00D1E008 /* ExpensesViewController.swift */,
-				0D001AC62C024C5F009D955D /* CustomTableViewCell.swift */,
+				0D3E8A482C0383D400606433 /* NewExpenseViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -74,7 +80,6 @@
 		0D18F69C2BE00238005C2CAB /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				0D001AC72C024C5F009D955D /* CustomTableViewCell.xib */,
 				0DDAABF52BDAC8F60003A7C1 /* Main.storyboard */,
 			);
 			path = Views;
@@ -87,6 +92,17 @@
 				0DDAABFD2BDAC8F70003A7C1 /* LaunchScreen.storyboard */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0D3E8A432C0375BA00606433 /* CustomCells */ = {
+			isa = PBXGroup;
+			children = (
+				0D001AC62C024C5F009D955D /* CustomTableViewCell.swift */,
+				0D001AC72C024C5F009D955D /* CustomTableViewCell.xib */,
+				0D3E8A442C0375D500606433 /* CategoryTableViewCell.swift */,
+				0D3E8A452C0375D500606433 /* CategoryTableViewCell.xib */,
+			);
+			path = CustomCells;
 			sourceTree = "<group>";
 		};
 		0DDAABE32BDAC8F60003A7C1 = {
@@ -112,6 +128,7 @@
 			children = (
 				0DDAABEF2BDAC8F60003A7C1 /* AppDelegate.swift */,
 				0DDAABF12BDAC8F60003A7C1 /* SceneDelegate.swift */,
+				0D3E8A432C0375BA00606433 /* CustomCells */,
 				0D18F69A2BE0021F005C2CAB /* Data Model */,
 				0D18F69B2BE0022C005C2CAB /* Controllers */,
 				0D18F69C2BE00238005C2CAB /* Views */,
@@ -199,6 +216,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0DDAABFC2BDAC8F70003A7C1 /* Assets.xcassets in Resources */,
+				0D3E8A462C0375D500606433 /* CategoryTableViewCell.xib in Resources */,
 				0DDAABFF2BDAC8F70003A7C1 /* Base in Resources */,
 				0D001AC82C024C5F009D955D /* CustomTableViewCell.xib in Resources */,
 				0DDAABF72BDAC8F60003A7C1 /* Base in Resources */,
@@ -261,6 +279,8 @@
 				0DDAABF22BDAC8F60003A7C1 /* SceneDelegate.swift in Sources */,
 				0DAF56B72C0199C50003BC04 /* Expense.swift in Sources */,
 				0DAF56B92C019B630003BC04 /* Category.swift in Sources */,
+				0D3E8A472C0375D500606433 /* CategoryTableViewCell.swift in Sources */,
+				0D3E8A492C0383D400606433 /* NewExpenseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -19,6 +19,24 @@ class CategoryViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //create a nib for custom cell
+        let nib = UINib.init(nibName: "CategoryTableViewCell", bundle: nil)
+        //register that nib with tableview
+        tableView.register(nib, forCellReuseIdentifier: "categoryCell")
+        
+        //to get data from realm
+        loadCategories()
+    }
+    
+    //to reload the data when back button on navigation bar is pressed
+    override func viewWillAppear(_ animated: Bool) {
+        
+        print("viewWillAppear CategoryVC")
+        //create a nib for custom cell
+        let nib = UINib.init(nibName: "CategoryTableViewCell", bundle: nil)
+        //register that nib with tableview
+        tableView.register(nib, forCellReuseIdentifier: "categoryCell")
+        
         //to get data from realm
         loadCategories()
     }
@@ -31,18 +49,32 @@ class CategoryViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         //creating a cell to pass at tableview
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "categoryCell", for: indexPath) as? CategoryTableViewCell
         
         //getting a value for that position from categoryarray
-        let category = categoryArray?[indexPath.row]
+        if let category = categoryArray?[indexPath.row] {
+            
+            cell?.categoryLabel.text = category.title
+            
+            //getting total of category expenses
+            let total: Float = category.expenses.sum(ofProperty: "amount")
+            print("total \(total)")
+            
+            cell?.categoryTotalLabel.text = String(total)
+            
+        }
         
-        //setting this value to text label of the cell
-        cell.textLabel?.text = category?.title ?? "No categories added yet."
+        //        //setting this value to text label of the cell
+        //        cell.textLabel?.text = category?.title ?? "No categories added yet."
+        //
+        //        //setting accessorytype to >
+        //        cell.accessoryType = .disclosureIndicator
         
-        //setting accessorytype to > 
-        cell.accessoryType = .disclosureIndicator
-        
-        return cell
+        return cell!
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 44
     }
     
     //MARK: - Tableview Delegate Methods
@@ -52,12 +84,25 @@ class CategoryViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destinationVC = segue.destination as! ExpensesViewController
         
-        //getting selected row details 
-        if let indexPath = tableView.indexPathForSelectedRow {
-            //to get category name to be used in expensesVC
-            destinationVC.selectedCategory = categoryArray?[indexPath.row]
+        if segue.identifier == "goToExpenses" {
+            let destinationVC = segue.destination as! ExpensesViewController
+            
+            //getting selected row details
+            if let indexPath = tableView.indexPathForSelectedRow {
+                //to get category name to be used in expensesVC
+                destinationVC.selectedCategory = categoryArray?[indexPath.row]
+            }
+        }
+        
+        //for going to new expense VC and setting its delegate to this VC 
+        switch (segue.identifier, segue.destination) {
+            // Check that the segue identifer matches and destination controller is a ModalViewController
+        case ("goToNewExpense", let destination as NewExpenseViewController):
+            print("going through segue...")
+            destination.delegate = self
+        case _:
+            break
         }
     }
     
@@ -116,12 +161,12 @@ class CategoryViewController: UITableViewController {
         
         categoryArray = realm.objects(Category.self)
         
-//        //using above created request fetching data from
-//        do {
-//            categoryArray = try context.fetch(request)
-//        } catch {
-//            print("Error fetching data from context \(error)")
-//        }
+        //        //using above created request fetching data from
+        //        do {
+        //            categoryArray = try context.fetch(request)
+        //        } catch {
+        //            print("Error fetching data from context \(error)")
+        //        }
         //to refresh data in the tableView
         tableView.reloadData()
     }
@@ -132,39 +177,55 @@ class CategoryViewController: UITableViewController {
 
 //MARK: - Search Bar Methods
 //extension CategoryViewController : UISearchBarDelegate {
-//    
+//
 //    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
 //        //query
 //        var request: NSFetchRequest<Category> = Category.fetchRequest()
-//        
+//
 //        print(searchBar.text!)
 //        //creating a predicate i.e., where condition
 //        var predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
-//        
+//
 //        //adding predicate to the request i.e., adding where condition to query
 //        request.predicate = predicate
-//        
+//
 //        //to sort, i.e., adding order by to our query
 //        //creating a sortDescriptor (create as many u need)
 //        let sortDescriptor = NSSortDescriptor(key: "title", ascending: true)
 //        //adding this sortDescriptor to the request (below is an array so can add many)
 //        request.sortDescriptors = [sortDescriptor]
-//        
+//
 //        //fetching request and reloading data i.e., running the query and getting O/P
 //        loadCategories(with: request)
 //    }
-//    
+//
 //    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
 //        if searchBar.text?.count == 0 {
 //            //relaoding all data as searchBar is empty
 //            loadCategories()
-//            
+//
 //            //to resign search bar as first responder i.e., deselect search bar and close the keyboard
-//            //need to call this within a dispacthqueue main async to keep UI unfrozen 
+//            //need to call this within a dispacthqueue main async to keep UI unfrozen
 //            DispatchQueue.main.async {
 //                searchBar.resignFirstResponder()
 //            }
 //        }
 //    }
-//    
+//
 //}
+
+
+extension CategoryViewController: NewExpenseViewControllerDelegate {
+    func newExpenseViewControllerWillDisapear(_ modal: NewExpenseViewController) {
+        print("newExpenseViewControllerWillDisapear CategoryVC")
+        //create a nib for custom cell
+        let nib = UINib.init(nibName: "CategoryTableViewCell", bundle: nil)
+        //register that nib with tableview
+        tableView.register(nib, forCellReuseIdentifier: "categoryCell")
+        
+        //to get data from realm
+        loadCategories()
+    }
+    
+}
+

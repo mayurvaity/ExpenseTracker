@@ -27,10 +27,4 @@ class CustomTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func commonInit(title: String, amount: Float, categoryName: String) {
-        paymentMethodLabel.text = categoryName
-        expenseLabel.text = title
-        amountLabel.text = String(amount)
-    }
-    
 }
