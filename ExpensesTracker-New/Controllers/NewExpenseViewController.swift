@@ -21,6 +21,9 @@ class NewExpenseViewController: UIViewController {
     
     //array to store all category objects
     var categoryArray: Results<Category>?
+    var expenses: Results<Expense>?
+    
+    var selectedCategory: Category?
     
     //array to store accounts
     let accounts = ["cash", "UPI", "card"]
@@ -34,8 +37,11 @@ class NewExpenseViewController: UIViewController {
     @IBOutlet weak var expenseAccount: UITextField!
     @IBOutlet weak var amountError: UILabel!
     
+    @IBOutlet weak var descriptionError: UILabel!
+    
     @IBOutlet weak var submitButton: UIButton!
     
+    @IBOutlet weak var datePicker: UIDatePicker!
     //delegate to be created to use protocol by main VC
     weak var delegate: NewExpenseViewControllerDelegate?
     
@@ -55,8 +61,14 @@ class NewExpenseViewController: UIViewController {
         
         submitButton.isEnabled = false
         
+        datePicker.datePickerMode = .date
+        datePicker.preferredDatePickerStyle = .compact 
+        
         //loading categories from Realm db
         loadCategories()
+        
+        //setting default category for selected category
+        selectedCategory = categoryArray?[0]
         
         //assigning delegate and data source
         pickerView.delegate = self
@@ -69,7 +81,16 @@ class NewExpenseViewController: UIViewController {
         expenseAccount.inputView = pickerViewAccounts
         
         //default value for tf
-        expenseCategory.text = categoryArray?[0].title 
+        if let categories = categoryArray {
+            if categories.count > 0 {
+                expenseCategory.text = categoryArray?[0].title
+            } else {
+                expenseCategory.text = "default"
+            }
+        } else {
+            expenseCategory.text = "default"
+        }
+        
         expenseAccount.text = accounts[0]
     }
     
@@ -96,9 +117,25 @@ class NewExpenseViewController: UIViewController {
         checkForValidForm()
     }
     
+    //description changed
+    @IBAction func descriptionChanged(_ sender: Any) {
+        if let description = expenseDescription.text {
+            //to check if tf contains other than whitespaces (i.e. it is not empty)
+            if description.trimmingCharacters(in: .whitespaces).isEmpty {
+                descriptionError.text = "Required"
+                descriptionError.isHidden = false
+            } else {
+                descriptionError.isHidden = true
+            }
+        }
+        //to enable/ disable submit based on input received in description field
+        checkForValidForm()
+    }
+    
+    
     //to enable/ disable submit based on input received in amount field
     func checkForValidForm() {
-        if amountError.isHidden {
+        if amountError.isHidden && descriptionError.isHidden {
             submitButton.isEnabled = true
         } else {
             submitButton.isEnabled = false
@@ -109,6 +146,31 @@ class NewExpenseViewController: UIViewController {
     
     @IBAction func addNewExpenseTapped(_ sender: UIButton) {
         print("Add new expense button tapped")
+        
+        //printing values
+        print("Amount \(expenseAmount.text)")
+        print("account \(expenseAccount.text)")
+        print("category \(expenseCategory.text)")
+        print("date \(datePicker.date)")
+        print("description: \(expenseDescription.text)")
+        
+        do {
+            try self.realm.write {
+                //creating a category object to be passed in array
+                let expense = Expense()
+                expense.title = expenseDescription.text!
+                guard let amount = Float(expenseAmount.text!) else {
+                    fatalError("Invalid value")
+                }
+                expense.amount = amount
+                expense.date = datePicker.date 
+                //setting category to this expense
+                self.selectedCategory?.expenses.append(expense)
+                print("selected category: \(selectedCategory?.title)")
+            }
+        } catch {
+            print("Error saving new expense, \(error)")
+        }
         
         //to dismiss the modal View
         navigationController?.popViewController(animated: true)
@@ -121,8 +183,6 @@ class NewExpenseViewController: UIViewController {
         
         categoryArray = realm.objects(Category.self)
         
-        //to refresh data in the tableView
-        //        tableView.reloadData()
     }
     
     
@@ -149,6 +209,9 @@ extension NewExpenseViewController: UIPickerViewDelegate, UIPickerViewDataSource
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView == self.pickerView {
             if let category = categoryArray?[row] {
+                //setting selected category to variable for later use
+                self.selectedCategory = category
+                //returnig title from selected category for TF text
                 return category.title
             } else {
                 return "No categories added yet"

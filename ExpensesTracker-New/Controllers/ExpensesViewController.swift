@@ -47,7 +47,7 @@ class ExpensesViewController: UITableViewController {
             cell?.expenseLabel.text = expenseData.title
             cell?.amountLabel.text = String(expenseData.amount)
             cell?.paymentMethodLabel.text = "card"
-            cell?.dateLabel.text = "25-May-2024"
+            cell?.dateLabel.text = formatDateToString(date: expenseData.date)
             
         } else {
             cell?.expenseLabel.text = "No expenses yet"
@@ -155,7 +155,21 @@ class ExpensesViewController: UITableViewController {
         
     }
 
+    //MARK: - Data Formatting
+    func formatDateToString(date: Date) -> String {
+        //creating dateformatter obj
+        let dateFormatter = DateFormatter()
+        //setting date format
+        dateFormatter.dateFormat = "MMM d, yyyy"
+        //converting date to string in above specified format
+        let result = dateFormatter.string(from: date)
+        
+        return result
+    }
+    
 }
+
+
 
 //extension ExpensesViewController: UISearchBarDelegate {
 //    

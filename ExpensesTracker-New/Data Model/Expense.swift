@@ -11,6 +11,7 @@ import RealmSwift
 class Expense: Object {
     @objc dynamic var title: String = ""
     @objc dynamic var amount: Float = 0.0
+    @objc dynamic var date: Date = Date()
     
     //backward relationship (fact to dimension)
     var parentCategory = LinkingObjects(fromType: Category.self, property: "expenses")

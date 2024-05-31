@@ -16,8 +16,13 @@ class CategoryViewController: UITableViewController {
     //array to store all category objects
     var categoryArray: Results<Category>?
     
+    var defaultData = DefaultData()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //default data loading
+        defaultData.addDefaultEntries() 
         
         //create a nib for custom cell
         let nib = UINib.init(nibName: "CategoryTableViewCell", bundle: nil)
@@ -141,7 +146,7 @@ class CategoryViewController: UITableViewController {
     
     //MARK: - Model Manipulation Methods
     
-    //used to save data to coredata
+    //used to save data to realm db 
     func save(category: Category) {
         
         do {
