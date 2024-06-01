@@ -16,6 +16,7 @@ class CategoryViewController: UITableViewController {
     //array to store all category objects
     var categoryArray: Results<Category>?
     
+    //default data creation obj 
     var defaultData = DefaultData()
     
     override func viewDidLoad() {

@@ -16,6 +16,10 @@ class DefaultData {
     //array to store all category objects
     var categoryArray: Results<Category>?
     
+    //array to store all account objects
+    var accountArray: Results<Account>?
+    
+    
     //used to check if default entries are there and to add them
     func addDefaultEntries() {
         //loading categories data from realm db
@@ -27,6 +31,17 @@ class DefaultData {
             addDefaultCategory()
         } else {
             print("Category count: \(categoryArray?.count)")
+        }
+        
+        //loading accounts data from realm db
+        loadAccounts()
+        
+        //checking if there are any pre-existing accounts
+        if accountArray?.count == 0 {
+            print("No acoounts created yet. Adding 1st now...")
+            addDefaultAccount()
+        } else {
+            print("Account count: \(accountArray?.count)")
         }
     }
     
@@ -60,4 +75,32 @@ class DefaultData {
         self.save(category: newCategoryN)
     }
     
+    //MARK: - Account - Model Manipulation Methods
+    //used to save data to realm db
+    func saveAccount(account: Account) {
+        
+        do {
+            try realm.write {
+                realm.add(account)
+            }
+        } catch {
+            print("Error saving new account, \(error)")
+        }
+        
+    }
+    
+    //to fetch accounts from realm db
+    func loadAccounts() {
+        accountArray = realm.objects(Account.self)
+    }
+    
+    //to add "cash" default account
+    func addDefaultAccount() {
+        //creating a category object to be passed in array
+        let newAccountN = Account()
+        newAccountN.name = "cash"
+        
+        //to save category array to realm
+        self.saveAccount(account: newAccountN)
+    }
 }

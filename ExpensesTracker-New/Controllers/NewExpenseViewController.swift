@@ -23,10 +23,14 @@ class NewExpenseViewController: UIViewController {
     var categoryArray: Results<Category>?
     var expenses: Results<Expense>?
     
+    //array to store all category objects
+    var accountArray: Results<Account>?
+    
     var selectedCategory: Category?
+    var selectedAccount: Account? 
     
     //array to store accounts
-    let accounts = ["cash", "UPI", "card"]
+//    let accounts = ["cash", "UPI", "card"]
     
     @IBOutlet weak var expenseDescription: UITextField!
     
@@ -70,6 +74,12 @@ class NewExpenseViewController: UIViewController {
         //setting default category for selected category
         selectedCategory = categoryArray?[0]
         
+        //loading accounts data from realm db
+        loadAccounts()
+        
+        //setting default account for selecte account
+        selectedAccount = accountArray?[0]
+        
         //assigning delegate and data source
         pickerView.delegate = self
         pickerView.dataSource = self
@@ -80,7 +90,7 @@ class NewExpenseViewController: UIViewController {
         expenseCategory.inputView = pickerView
         expenseAccount.inputView = pickerViewAccounts
         
-        //default value for tf
+        //default value for tf (category)
         if let categories = categoryArray {
             if categories.count > 0 {
                 expenseCategory.text = categoryArray?[0].title
@@ -90,8 +100,79 @@ class NewExpenseViewController: UIViewController {
         } else {
             expenseCategory.text = "default"
         }
+        //default value for TF (account)
+        if let accounts = accountArray {
+            if accounts.count > 0 {
+                expenseAccount.text = accountArray?[0].name
+            } else {
+                expenseAccount.text = "default"
+            }
+        } else {
+            expenseAccount.text = "default"
+        }
+    }
+    
+    //MARK: - New category and accounts
+
+    //new category
+    @IBAction func newCategoryButtonPressed(_ sender: UIButton) {
+        var textField = UITextField()
         
-        expenseAccount.text = accounts[0]
+        //for the pop-up alert, to add new category
+        let alert = UIAlertController(title: "Add New Category", message: "", preferredStyle: .alert)
+        
+        //for the button in above created pop-up, and actions of that button
+        let action = UIAlertAction(title: "Add Category", style: .default) { action in
+            
+            //creating a category object to be passed in array
+            let newCategoryN = Category()
+            newCategoryN.title = textField.text!
+            
+            //to save category array to realm
+            self.save(category: newCategoryN)
+        }
+        
+        //to add textfield to above alert
+        alert.addTextField { alertTextField in
+            alertTextField.placeholder = "Create new category"
+            textField = alertTextField
+        }
+        
+        //adding action to this alert
+        alert.addAction(action)
+        
+        //to show pop-up present method is used
+        present(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func newAccountButtonPressed(_ sender: UIButton) {
+        var textField = UITextField()
+        
+        //for the pop-up alert, to add new category
+        let alert = UIAlertController(title: "Add New Account", message: "", preferredStyle: .alert)
+        
+        //for the button in above created pop-up, and actions of that button
+        let action = UIAlertAction(title: "Add Account", style: .default) { action in
+            
+            //creating a category object to be passed in array
+            let newAccountN = Account()
+            newAccountN.name = textField.text!
+            
+            //to save category array to realm
+            self.saveAccount(account: newAccountN)
+        }
+        
+        //to add textfield to above alert
+        alert.addTextField { alertTextField in
+            alertTextField.placeholder = "Create new account"
+            textField = alertTextField
+        }
+        
+        //adding action to this alert
+        alert.addAction(action)
+        
+        //to show pop-up present method is used
+        present(alert, animated: true, completion: nil)
     }
     
     //MARK: - Event monitoring on text fields
@@ -148,11 +229,11 @@ class NewExpenseViewController: UIViewController {
         print("Add new expense button tapped")
         
         //printing values
-        print("Amount \(expenseAmount.text)")
-        print("account \(expenseAccount.text)")
-        print("category \(expenseCategory.text)")
+        print("Amount \(expenseAmount.text!)")
+        print("account \(expenseAccount.text!)")
+        print("category \(expenseCategory.text!)")
         print("date \(datePicker.date)")
-        print("description: \(expenseDescription.text)")
+        print("description: \(expenseDescription.text!)")
         
         do {
             try self.realm.write {
@@ -164,9 +245,17 @@ class NewExpenseViewController: UIViewController {
                 }
                 expense.amount = amount
                 expense.date = datePicker.date 
+                
                 //setting category to this expense
                 self.selectedCategory?.expenses.append(expense)
                 print("selected category: \(selectedCategory?.title)")
+                
+                //setting account to this expense
+                self.selectedAccount?.expensesAccount.append(expense)
+                print("Selected account: \(selectedAccount?.name)")
+                
+//                let thisAccount = accountArray?.filter("expensesAccount in %@", expense)
+//                print("Expense ac: \(thisAccount?.count)")
             }
         } catch {
             print("Error saving new expense, \(error)")
@@ -185,7 +274,34 @@ class NewExpenseViewController: UIViewController {
         
     }
     
+    //used to save data to realm db
+    func save(category: Category) {
+        do {
+            try realm.write {
+                realm.add(category)
+            }
+        } catch {
+            print("Error saving new category, \(error)")
+        }
+    }
     
+    //to fetch accounts from realm db
+    func loadAccounts() {
+        accountArray = realm.objects(Account.self)
+    }
+    
+    //used to save data to realm db
+    func saveAccount(account: Account) {
+        
+        do {
+            try realm.write {
+                realm.add(account)
+            }
+        } catch {
+            print("Error saving new account, \(error)")
+        }
+        
+    }
 }
 
 //MARK: - Picker view methods
@@ -200,7 +316,7 @@ extension NewExpenseViewController: UIPickerViewDelegate, UIPickerViewDataSource
             return categoryArray?.count ?? 1
         }
         if pickerView == pickerViewAccounts {
-            return accounts.count
+            return accountArray?.count ?? 1
         }
         return 1
     }
@@ -218,7 +334,14 @@ extension NewExpenseViewController: UIPickerViewDelegate, UIPickerViewDataSource
             }
         }
         if pickerView == pickerViewAccounts {
-            return accounts[row]
+            if let account = accountArray?[row] {
+                //setting selected account to variable for later use
+                self.selectedAccount = account
+                //returnig title from selected category for TF text
+                return account.name
+            } else {
+                return "No accounts added yet"
+            }
         }
         return "default"
     }
@@ -234,10 +357,16 @@ extension NewExpenseViewController: UIPickerViewDelegate, UIPickerViewDataSource
             }
         }
         if pickerView == pickerViewAccounts {
-            expenseAccount.text = accounts[row]
+            if let accounts = accountArray {
+                expenseAccount.text = accounts[row].name
+            } else {
+                expenseAccount.text = "No accounts added yet"
+            }
         }
         
         //to hide pickerview once a value is selected
         self.view.endEditing(true)
     }
 }
+
+

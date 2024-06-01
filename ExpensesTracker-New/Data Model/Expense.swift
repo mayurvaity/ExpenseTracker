@@ -15,4 +15,7 @@ class Expense: Object {
     
     //backward relationship (fact to dimension)
     var parentCategory = LinkingObjects(fromType: Category.self, property: "expenses")
+    
+    //backward relationship (fact to dimension)
+    var parentAccount = LinkingObjects(fromType: Account.self, property: "expensesAccount")
 }

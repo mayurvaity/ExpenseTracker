@@ -46,7 +46,7 @@ class ExpensesViewController: UITableViewController {
 //            cell?.commonInit(title: expenseData.title, amount: expenseData.amount, categoryName: self.selectedCategory?.title!) 
             cell?.expenseLabel.text = expenseData.title
             cell?.amountLabel.text = String(expenseData.amount)
-            cell?.paymentMethodLabel.text = "card"
+            cell?.paymentMethodLabel.text = expenseData.parentAccount[0].name
             cell?.dateLabel.text = formatDateToString(date: expenseData.date)
             
         } else {

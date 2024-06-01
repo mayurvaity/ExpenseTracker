@@ -13,6 +13,7 @@
 		0D3E8A462C0375D500606433 /* CategoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D3E8A452C0375D500606433 /* CategoryTableViewCell.xib */; };
 		0D3E8A472C0375D500606433 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D3E8A442C0375D500606433 /* CategoryTableViewCell.swift */; };
 		0D3E8A492C0383D400606433 /* NewExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D3E8A482C0383D400606433 /* NewExpenseViewController.swift */; };
+		0D7B8B562C0B7967004D9107 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7B8B552C0B7967004D9107 /* Account.swift */; };
 		0DAF56B72C0199C50003BC04 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF56B62C0199C50003BC04 /* Expense.swift */; };
 		0DAF56B92C019B630003BC04 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF56B82C019B630003BC04 /* Category.swift */; };
 		0DBED7602C0A3C3800CED7D0 /* DefaultData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBED75F2C0A3C3800CED7D0 /* DefaultData.swift */; };
@@ -32,6 +33,7 @@
 		0D3E8A442C0375D500606433 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		0D3E8A452C0375D500606433 /* CategoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryTableViewCell.xib; sourceTree = "<group>"; };
 		0D3E8A482C0383D400606433 /* NewExpenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewExpenseViewController.swift; sourceTree = "<group>"; };
+		0D7B8B552C0B7967004D9107 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		0DAF56B62C0199C50003BC04 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
 		0DAF56B82C019B630003BC04 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		0DBED75F2C0A3C3800CED7D0 /* DefaultData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultData.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 			children = (
 				0DAF56B62C0199C50003BC04 /* Expense.swift */,
 				0DAF56B82C019B630003BC04 /* Category.swift */,
+				0D7B8B552C0B7967004D9107 /* Account.swift */,
 			);
 			path = "Data Model";
 			sourceTree = "<group>";
@@ -276,6 +279,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0DDAABF42BDAC8F60003A7C1 /* CategoryViewController.swift in Sources */,
+				0D7B8B562C0B7967004D9107 /* Account.swift in Sources */,
 				0DDAABF02BDAC8F60003A7C1 /* AppDelegate.swift in Sources */,
 				0D2B29B52BE2C82F00D1E008 /* ExpensesViewController.swift in Sources */,
 				0D001AC92C024C5F009D955D /* CustomTableViewCell.swift in Sources */,
