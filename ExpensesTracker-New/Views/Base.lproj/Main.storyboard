@@ -89,6 +89,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="0bS-0D-wOr" kind="presentation" identifier="goToNewExpenseFromExp" id="I0A-ca-Chv"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nnp-oU-zyY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -275,6 +278,9 @@
             <point key="canvasLocation" x="-86.25954198473282" y="-145.07042253521126"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="I0A-ca-Chv"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

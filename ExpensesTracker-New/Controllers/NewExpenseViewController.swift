@@ -22,15 +22,11 @@ class NewExpenseViewController: UIViewController {
     //array to store all category objects
     var categoryArray: Results<Category>?
     var expenses: Results<Expense>?
-    
     //array to store all category objects
     var accountArray: Results<Account>?
     
     var selectedCategory: Category?
-    var selectedAccount: Account? 
-    
-    //array to store accounts
-//    let accounts = ["cash", "UPI", "card"]
+    var selectedAccount: Account?
     
     @IBOutlet weak var expenseDescription: UITextField!
     
@@ -72,7 +68,12 @@ class NewExpenseViewController: UIViewController {
         loadCategories()
         
         //setting default category for selected category
-        selectedCategory = categoryArray?[0]
+        if selectedCategory == nil {
+            print("selected category is nil.")
+            selectedCategory = categoryArray?[0]
+        } else {
+            print("selected category in viewdidload: \(selectedCategory?.title)")
+        }
         
         //loading accounts data from realm db
         loadAccounts()
@@ -91,25 +92,10 @@ class NewExpenseViewController: UIViewController {
         expenseAccount.inputView = pickerViewAccounts
         
         //default value for tf (category)
-        if let categories = categoryArray {
-            if categories.count > 0 {
-                expenseCategory.text = categoryArray?[0].title
-            } else {
-                expenseCategory.text = "default"
-            }
-        } else {
-            expenseCategory.text = "default"
-        }
+        expenseCategory.text = selectedCategory?.title
+
         //default value for TF (account)
-        if let accounts = accountArray {
-            if accounts.count > 0 {
-                expenseAccount.text = accountArray?[0].name
-            } else {
-                expenseAccount.text = "default"
-            }
-        } else {
-            expenseAccount.text = "default"
-        }
+        expenseAccount.text = selectedAccount?.name
     }
     
     //MARK: - New category and accounts
@@ -253,9 +239,6 @@ class NewExpenseViewController: UIViewController {
                 //setting account to this expense
                 self.selectedAccount?.expensesAccount.append(expense)
                 print("Selected account: \(selectedAccount?.name)")
-                
-//                let thisAccount = accountArray?.filter("expensesAccount in %@", expense)
-//                print("Expense ac: \(thisAccount?.count)")
             }
         } catch {
             print("Error saving new expense, \(error)")
